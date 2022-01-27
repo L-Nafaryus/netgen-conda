@@ -1,0 +1,38 @@
+From 56eb26729f5b98cb6bff820f78c9dad9377b9249 Mon Sep 17 00:00:00 2001
+From: L-Nafaryus <l.nafaryus@gmail.com>
+Date: Wed, 22 Dec 2021 19:01:45 +0500
+Subject: [PATCH] volume of the solid
+
+---
+ libsrc/occ/python_occ_shapes.cpp | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/libsrc/occ/python_occ_shapes.cpp b/libsrc/occ/python_occ_shapes.cpp
+index b29fa0b2..f835095d 100644
+--- a/libsrc/occ/python_occ_shapes.cpp
++++ b/libsrc/occ/python_occ_shapes.cpp
+@@ -647,6 +647,21 @@ DLL_HEADER void ExportNgOCCShapes(py::module &m)
+            return props.Mass();
+       }, "returns mass of shape, what is length, face, or volume")
+ 
++    .def_property_readonly("volume", [](const TopoDS_Shape & shape)
++    {
++        if (shape.ShapeType() == TopAbs_SOLID)
++        {
++            GProp_GProps props;
++            BRepGProp::VolumeProperties(shape, props);
++            
++            return props.Mass();
++        }
++        else
++        {
++            return 0.;
++        }
++    }, "returns volume of shape")
++
+     .def("Move", [](const TopoDS_Shape & shape, const gp_Vec v)
+          {
+            // which one to choose ? 
+-- 
+2.34.1
+
