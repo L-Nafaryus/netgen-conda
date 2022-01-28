@@ -1,7 +1,6 @@
 {% set name = "netgen" %}
-{% set version = "6.2.2105.169" %}
+{% set version = "6.2.2105" %}
 {% set branch = "master" %}
-# tag=$(git tag --list | tail -n 1) && echo "$tag.$(git rev-list $tag..master --count)"
 
 package:
   name: {{ name }}
@@ -12,10 +11,9 @@ source:
   git_branch: {{ branch }}
   patches:
     - solids-volume.patch
-    - cmake.patch
 
 build:
-  number: 2
+  number: 0
   skip: true  # [py27]
 
 requirements:
