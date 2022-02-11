@@ -1,5 +1,5 @@
 {% set name = "netgen" %}
-{% set version = "6.2.2105" %}
+{% set version = "6.2.2105.199" %}
 {% set branch = "master" %}
 
 package:
@@ -24,12 +24,12 @@ requirements:
     - cmake
   host:
     - occt
-    - python
+    - python<3.10
     - pybind11
     - zlib
   run:
     - occt
-    - python
+    - python<3.10
     - zlib
 
 test:

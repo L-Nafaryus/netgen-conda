@@ -24,4 +24,3 @@ cmake -G "Ninja" \
 
 ninja install -v
 
-export PKG_VERSION="$PKG_VERSION.$GIT_DESCRIBE_NUMBER"
